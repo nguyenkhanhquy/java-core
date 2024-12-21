@@ -28,7 +28,7 @@ public class WordQuestGame {
             System.out.println("Current word: " + String.valueOf(gameBoard));
 
             System.out.println();
-            System.out.println("Guess a letter: ");
+            System.out.print("Guess a letter: ");
 
             // Read the user input
             String userInput = scanner.next().toUpperCase();
@@ -52,8 +52,26 @@ public class WordQuestGame {
 
                 // Check if there are any still unrevealed letters
                 wordNotRevealed = containsUnderscore(gameBoard);
+            } else {
+                System.out.println("Oops! That letter is not in the word.");
+
+                // Decrement attempts if the guess is incorrect
+                maxAttempts--;
             }
+
+            // Display remaining attempts after each guess
+            System.out.println("Attempts remaining: " + maxAttempts);
+            System.out.println();
         }
+
+        // End of game message based on wether the word was revealed
+        if (!wordNotRevealed) {
+            System.out.println("Congratulations! You found the word: " + secretWord);
+        } else {
+            System.out.println("Game over! The word was: " + secretWord);
+        }
+
+        scanner.close();
     }
 
     private static boolean containsUnderscore(char[] gameBoard) {
