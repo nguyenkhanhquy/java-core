@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 public class WordQuestGame {
     public static void main(String[] args) {
@@ -13,6 +14,26 @@ public class WordQuestGame {
 
         // Initialize the game board with underscores to represent unrevealed letters
         Arrays.fill(gameBoard, '_');
+
+        // Scanner to read user input
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to Word Quest!");
+
+        // Flag to check if the word has been fully revealed
+        boolean wordNotRevealed = true;
+
+        // Main game loop: runs while there are attempts left and word is not fully revealed
+        while (maxAttempts > 0 && wordNotRevealed) {
+            System.out.println("Current word: " + String.valueOf(gameBoard));
+
+            System.out.println();
+            System.out.println("Guess a letter: ");
+
+            // Read the user input
+            String userInput = scanner.next().toUpperCase();
+            char guess = userInput.charAt(0);
+        }
     }
 
     private static String getRandomWord() {
