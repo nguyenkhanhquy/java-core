@@ -33,7 +33,36 @@ public class WordQuestGame {
             // Read the user input
             String userInput = scanner.next().toUpperCase();
             char guess = userInput.charAt(0);
+
+            // Track if the guess is correct
+            boolean isGuessCorrect = false;
+
+            // Loop through each letter in the secret word and check if it matches the guess
+            for (int i = 0; i < secretWord.length(); i++) {
+                if (secretWord.charAt(i) == guess) {
+                    // Reveal the correctly guessed letter on the game board
+                    gameBoard[i] = guess;
+                    isGuessCorrect = true;
+                }
+            }
+
+            // Update game status based on the guess
+            if (isGuessCorrect) {
+                System.out.println("Good job! You found a letter!");
+
+                // Check if there are any still unrevealed letters
+                wordNotRevealed = containsUnderscore(gameBoard);
+            }
         }
+    }
+
+    private static boolean containsUnderscore(char[] gameBoard) {
+        for (char c : gameBoard) {
+            if (c == '_') {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static String getRandomWord() {
